@@ -3,10 +3,13 @@ import {
     Text,
     View,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert
 } from 'react-native';
 import AppHeader from "../components/AppHeader";
 import { TextInput } from 'react-native-gesture-handler';
+import db from "../config";
+import firebase from "firebase";
   
 export default class WriteScreen extends React.Component {
 
@@ -17,6 +20,21 @@ export default class WriteScreen extends React.Component {
       author: "",
       story: ""
     }
+  }
+
+  submitStory = async() => {
+    console.log(this.state.title);
+    db.collection("stories").add({
+        title: this.state.title,
+        author: this.state.author,
+        story: this.state.story
+      })
+    Alert.alert("story submitted");
+    this.setState({
+      title: "",
+      author: "",
+      story: ""
+    })
   }
 
 
@@ -52,6 +70,7 @@ export default class WriteScreen extends React.Component {
               multiline = {true}
               value = {this.state.story}/>
               <TouchableOpacity
+                  onPress = {this.submitStory}
                   style = {styles.submitButton}>
                     <Text style = {styles.submitButtonText}> Submit </Text> 
                   </TouchableOpacity>
