@@ -4,6 +4,8 @@ import {
     View,
     StyleSheet,
     TouchableOpacity,
+    ToastAndroid,
+    KeyboardAvoidingView,
     Alert
 } from 'react-native';
 import AppHeader from "../components/AppHeader";
@@ -30,6 +32,7 @@ export default class WriteScreen extends React.Component {
         story: this.state.story
       })
     Alert.alert("story submitted");
+    ToastAndroid.show("Story Submitted", ToastAndroid.LONG)
     this.setState({
       title: "",
       author: "",
@@ -40,7 +43,7 @@ export default class WriteScreen extends React.Component {
 
   render() {
           return(
-            <View>
+            <KeyboardAvoidingView behavior = "padding" enabled>
             <AppHeader/>
           <View style = {styles.container}>
               <TextInput
@@ -75,14 +78,14 @@ export default class WriteScreen extends React.Component {
                     <Text style = {styles.submitButtonText}> Submit </Text> 
                   </TouchableOpacity>
           </View>
-          </View>
+          </KeyboardAvoidingView>
         )
     }
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      //flex: 1,
       justifyContent: 'center',
       alignItems: 'center'
     },
