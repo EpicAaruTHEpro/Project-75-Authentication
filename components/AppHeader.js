@@ -5,7 +5,7 @@ class AppHeader extends React.Component{
   render(){
     return(
       <View style= {styles.textContainer}>
-        <Text style={styles.text}>Story Hub</Text>
+        <Text style={styles.text}>Bed Time Stories</Text>
       </View>
     );
   }
