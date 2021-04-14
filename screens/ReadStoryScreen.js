@@ -74,12 +74,13 @@ import firebase from "firebase";
           style= {styles.searchBar}
           placeholder = "Type Here ..."
           onChangeText={text => {
-            this.setState({query: text})
+            this.setState({query: text, lastVisibleStory: null, allStories: []})
           }}
           value={this.state.query}
           />
           <TouchableOpacity style = {styles.searchButton}
-          onPress = {()=>{this.retriveStories(this.state.query)}}>
+          onPress = {()=>{this.retriveStories(this.state.query)
+            this.setState({lastVisibleStory: null, allStories: []})}}>
           <Text> Search </Text>
           </TouchableOpacity>
           <FlatList
