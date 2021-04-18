@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { Image } from 'react-native';
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import ReadScreen from "./screens/ReadStoryScreen";
 import WriteScreen from "./screens/WriteStoryScreen";
+import LoginScreen from "./screens/LoginScreen";
 
 export default class App extends React.Component {
   render() {
@@ -36,4 +37,8 @@ var tabNavigator = createBottomTabNavigator({
       }
     })
   } );
-const AppContainer = createAppContainer(tabNavigator);
+const SwitchNavigator = createSwitchNavigator({
+  LoginScreen: {screen: LoginScreen}, 
+  tabNavigator: {screen: tabNavigator}
+})
+const AppContainer = createAppContainer(SwitchNavigator);
